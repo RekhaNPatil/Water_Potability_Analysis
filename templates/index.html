@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>ML API</title>
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Hind:300" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet" type="text/css">
+    <style>
+        /* Body styling */
+        body {
+            font-family: 'Arimo', sans-serif;
+            background-color: #f0f8ff; /* Light blue background color */
+            padding: 20px;
+            color: #2c3e50;
+        }
+
+        /* Container styling */
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #f0f8ff, #cce7ff); /* Gradient background */
+            border-radius: 15px; /* Rounded corners */
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+
+        /* Title styling */
+        h1 {
+            font-family: 'Pacifico', cursive;
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px #f5f5f5; /* Text shadow */
+        }
+
+        /* Form styling */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px; /* Increased gap for better spacing */
+        }
+
+        /* Input styling */
+        input[type="text"] {
+            padding: 10px;
+            border: none; /* No border */
+            border-radius: 8px; /* Rounded corners */
+            font-size: 16px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            transition: box-shadow 0.3s;
+        }
+
+        /* Input focus styling */
+        input[type="text"]:focus {
+            box-shadow: 0 0 10px rgba(0, 128, 255, 0.5); /* Blue glow effect on focus */
+            outline: none;
+        }
+
+        /* Button styling */
+        button {
+            padding: 12px;
+            background: linear-gradient(to right, #3498db, #1abc9c); /* Gradient button */
+            color: white;
+            border: none;
+            border-radius: 8px; /* Rounded corners */
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s, box-shadow 0.3s;
+        }
+
+        button:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow on hover */
+        }
+
+        /* Prediction text styling */
+        .prediction-text {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 18px;
+            color: #2c3e50;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Predicting Aquatic Health</h1>
+
+        <form action="{{ url_for('predict') }}" method="post">
+            <input type="text" name="ph" placeholder="pH Level" required />
+            <input type="text" name="Hardness" placeholder="Hardness" required />
+            <input type="text" name="Solids" placeholder="Solids" required />
+            <input type="text" name="Chloramines" placeholder="Chloramines" required />
+            <input type="text" name="Sulfate" placeholder="Sulfate" required />
+            <input type="text" name="Conductivity" placeholder="Conductivity" required />
+            <input type="text" name="Organic_carbon" placeholder="Organic Carbon" required />
+            <input type="text" name="Trihalomethanes" placeholder="Trihalomethanes" required />
+            <input type="text" name="Turbidity" placeholder="Turbidity" required />
+
+            <button type="submit">Predict</button>
+        </form>
+
+        <div class="prediction-text">
+            {{prediction_text}}
+        </div>
+    </div>
+</body>
+</html>
